@@ -10,11 +10,23 @@ const {
     getUsers,
   } = require("./handler/user");
 
-
 // DATABASE HANDLER
 const { getAll, deleteAll } = require("./handler/allData");
 
+// Handler Article
+const {
+  getAllArticles,
+  getArticle,
+  addArticle,
+  updateArticle,
+  deleteArticle,
+} = require("./handler/artikeldata");
+
 const routes = [
+
+    // ---------------------
+    //  Handler User
+    // ---------------------
     //LOGIN
     {
         method: "POST",
@@ -80,7 +92,7 @@ const routes = [
 
 
       // ----------------------
-      // Endpoint /database
+      // Handler allData
       // ----------------------
 
       // GET /database
@@ -98,7 +110,60 @@ const routes = [
         path: "/database",
         handler: deleteAll,
       },
-    
+
+    // ---------------------
+    //  Handler Article
+    // ---------------------
+
+    // getAllArticles - Mengambil Semua Data Artikel dari Firestore
+    {
+      method: "GET",
+      path: "/articles",
+      handler: getAllArticles,
+    },
+
+    // getArticle - Ambil Data Artikel Tertentu
+    {
+      method: "GET",
+      path: "/articles/{id}",
+      handler: getArticle,
+    },
+
+    // addArticle - Menyimpan Data Artikel ke Firestore
+    {
+      method: "POST",
+      path: "/articles",
+      handler: addArticle,
+      options: {
+        payload: {
+          maxBytes: 10485760,
+          multipart: true,
+          output: "stream",
+        },
+      },
+    },
+
+    // updateArticle - Memperbarui Data Artikel di Firestore
+    {
+      method: "PUT",
+      path: "/articles/{id}",
+      handler: updateArticle,
+      options: {
+        payload: {
+          maxBytes: 10485760,
+          multipart: true,
+          output: "stream",
+        },
+      },
+    },
+
+    // deleteArticle - Menghapus Data Artikel dari Firestore
+    {
+      method: "DELETE",
+      path: "/articles/{id}",
+      handler: deleteArticle,
+    },
+      
 
 
 ];
