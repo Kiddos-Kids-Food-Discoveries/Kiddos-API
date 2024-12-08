@@ -2,7 +2,7 @@
 const {
     register,
     login,
-    resetPassword,
+    forgotPassword,
     editUsers,
     deleteUsers,
     deleteAllUserData,
@@ -11,7 +11,9 @@ const {
   } = require("./handler/user");
 
 // DATABASE HANDLER
-const { getAll, deleteAll } = require("./handler/allData");
+const { 
+  getAll, 
+  deleteAll } = require("./handler/allData");
 
 // Handler Article
 const {
@@ -21,6 +23,25 @@ const {
   updateArticle,
   deleteArticle,
 } = require("./handler/artikeldata");
+
+
+// Handler Makanan
+const { 
+  getAllMakanan, 
+  getMakanan, 
+  getMakananById, 
+  addMakanan,
+  updateMakanan, 
+  deleteAllMakanan} = require("./handler/makanan");
+
+
+// Handler Predict
+const { predict } = require("./handler/predict");
+const { 
+  predictAndSaveHistory,
+  getHistoryHandler, 
+  deleteHistoryHandler } = require("./handler/predichisto");
+
 
 const routes = [
 
@@ -58,8 +79,8 @@ const routes = [
       //RESET PASSWORD
       {
         method: "POST",
-        path: "/resetPassword",
-        handler: resetPassword,
+        path: "/forgotPassword",
+        handler: forgotPassword,
       },
 
       //EDIT USER PROFILE
@@ -163,8 +184,120 @@ const routes = [
       path: "/articles/{id}",
       handler: deleteArticle,
     },
-      
 
+    // ---------------------
+    //  Handler makanan
+    // ---------------------
+
+    // getAllArticles - Mengambil Semua Data Artikel dari Firestore
+    {
+      method: "GET",
+      path: "/makanan",
+      handler: getAllMakanan,
+
+    },
+
+    // getAllArticles - Mengambil Semua Data Artikel dari Firestore
+    {
+      method: "GET",
+      path: "/makanan/{kategori}",
+      handler: getMakanan,
+
+    },
+
+
+    // getArticle - Ambil Data makanan Tertentu
+    {
+      method: "GET",
+      path: "/makanan/{kategori}/{makananId}",
+      handler: getMakananById,
+
+    },
+
+    // addArticle - Menyimpan Data makanan ke Firestore
+    {
+      method: "POST",
+      path: "/makanan",
+      handler: addMakanan,
+      options: {
+        payload: {
+          maxBytes: 10485760,
+          multipart: true,
+          output: "stream",
+        },
+      },
+
+    },
+
+
+    // updateArticle - Memperbarui Data makanan di Firestore
+    {
+      method: "PUT",
+      path: "/makanan/{kategori}/{makananId}",
+      handler: updateMakanan,
+      options: {
+        payload: {
+          maxBytes: 10485760,
+          multipart: true,
+          output: "stream",
+        },
+      },
+
+    },
+
+    // deleteArticle - Menghapus Data Artikel dari Firestore
+    {
+      method: "DELETE",
+      path: "/makanan/{kategori}",
+      handler: deleteAllMakanan,
+    },
+
+
+    
+    // ---------------------
+    // Handler Predict
+    // ---------------------
+
+    // POST /predict
+    // Membuat Prediksi
+    {
+      method: "POST",
+      path: "/predict",
+      handler: predict, 
+      options: {
+          payload: {
+              maxBytes: 10485760, // Batas ukuran file: 10 MB
+              multipart: true, // Mendukung multipart/form-data
+              output: "stream", // Mendukung streaming file
+              parse: true, // Parsing otomatis untuk multipart payload
+          },
+      },
+  },
+  {
+    method: "POST",
+    path: "/predicthisto",
+    handler: predictAndSaveHistory, 
+    options: {
+        payload: {
+            maxBytes: 10485760, // Batas ukuran file: 10 MB
+            multipart: true, // Mendukung multipart/form-data
+            output: "stream", // Mendukung streaming file
+            parse: true, // Parsing otomatis untuk multipart payload
+        },
+    },
+  },
+  {
+    method: 'GET',
+    path: '/history/{user_id}', // Menggunakan parameter user_id dalam URL
+    handler: getHistoryHandler,
+  },
+  {
+    method: 'DELETE',
+    path: '/history/{history_id}', // Menggunakan parameter user_id dalam URL
+    handler: deleteHistoryHandler,
+  },
+
+      
 
 ];
 

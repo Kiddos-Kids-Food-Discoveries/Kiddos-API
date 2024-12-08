@@ -5,10 +5,15 @@ const serviceAccount = require("./private/firebase.json");
 
 //  Function - Inisialiasi Firebase
 const firebase_init = () => {
-  // Kredensial Firebase
-  firebase_admin.initializeApp({
-    credential: firebase_admin.credential.cert(serviceAccount),
-  });
+  // Cek apakah Firebase sudah diinisialisasi
+  if (!firebase_admin.apps.length) {
+    firebase_admin.initializeApp({
+      credential: firebase_admin.credential.cert(serviceAccount),
+    });
+    console.log("Firebase berhasil diinisialisasi.");
+  } else {
+    console.log("Firebase sudah diinisialisasi sebelumnya.");
+  }
 };
 
 // Function - Server HAPI

@@ -160,7 +160,7 @@ const login = async (request, h) => {
   }
 };
 
-const resetPassword = async (request, h) => {
+const forgotPassword = async (request, h) => {
 
   try {
     //  Ambil Request Payload
@@ -502,7 +502,7 @@ const deleteAllUserData = async () => {
 module.exports = { 
     register, 
     login,
-    resetPassword,
+    forgotPassword,
     getAllUsers,
     getUsers,
     editUsers, 
