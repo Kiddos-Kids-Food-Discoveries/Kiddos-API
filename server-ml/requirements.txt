@@ -1,0 +1,11 @@
+flask
+tensorflow
+numpy
+Pillow
+waitress
+librosa
+uvicorn
+fastapi
+python-multipart
+firebase-admin
+google-cloud-firestore
