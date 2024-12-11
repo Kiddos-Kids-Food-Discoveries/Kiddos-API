@@ -1,60 +1,97 @@
-# Cloud Infrastructure
-<img src="https://i.postimg.cc/YqfkwTkV/Cloud-Infrastructure-Kiddos-drawio.png">
+# Kiddos API Documentation
 
-# API Documentation
+## Table of Contents
+- [Introduction](#introduction)
+- [Cloud Infrastructure](#cloud-infrastructure)
+- [Setup Project](#setup-project)
+- [Environment Configuration](#environment-configuration)
+- [Prediction Classes](#prediction-classes)
+- [Endpoint Routes](#endpoint-routes)
+- [API Documentation](#api-documentation)
+- [Contributing](#contributing)
+- [License](#license)
 
-This document provides information on how to use the API endpoints and their functionalities.
+---
 
-# Setup Project
-To run this project, install it locally using npm on your pc
-```
-# clone repository
-$ git clone https://github.com/Kiddos-Kids-Food-Discoveries/Kiddos-API.git
+## Introduction
+The **Kiddos API** is designed to classify food items using a Machine Learning model. This API provides endpoints for user management, food prediction, and history tracking. It also supports integration with Firebase and Google Cloud services.
 
-# change directory to server
-$ cd server
+---
 
-# Install dependencies
+## Cloud Infrastructure
+![Cloud Infrastructure](https://i.postimg.cc/YqfkwTkV/Cloud-Infrastructure-Kiddos-drawio.png)
+
+---
+
+## Setup Project
+To run this project, clone the repository and install the required dependencies.
+
+### Steps
+```bash
+# Clone the repository
+git clone https://github.com/Kiddos-Kids-Food-Discoveries/Kiddos-API.git
+
+# Change directory to the server folder
+cd Kiddos-API/server
+
+# Install server dependencies
 npm install
 
-# change directory to server-ml
-$ cd ../server-ml
+# Change directory to the ML server folder
+cd ../server-ml
 
-# Install dependencies
+# Install ML server dependencies
 pip install -r requirements.txt
 ```
-Please go to Google Cloud Console and create a service account with permissions for both Storage Object Admin and Storage Object Viewer
 
-### Create private file and your key.json
-```
+---
+
+## Environment Configuration
+
+### Create a Service Account
+1. Go to **Google Cloud Console** and create a service account.  
+2. Assign the following permissions:
+   - **Storage Object Admin**
+   - **Storage Object Viewer**
+
+### Create a Private Configuration File
+Create a `key.json` file in your project to store API keys and configurations:
+```json
 {
-    "api_key":"",
-    "storage_bucket": "kiddos-bangkit-2024",
+    "api_key": "",
+    "storage_bucket": "kiddos-bangkit-2024"
 }
 ```
 
-### Import file key firebase and fire store to private file 
-This folder is used to store 2 file including firebase-config.js and serviceAccount.json. Use serviceAccount.json from Google Cloud Project
-```
-- In firebase create project => Go to project setting and in sevice account "Generate new private key"
-- In Google Cloud Platform go to the IAM & Admin (if dont have project go make one) => go to service account and create a service account for the admin cloud => after create the service account go and clict the service account that have been made => go to key section and add key and then create new key
+### Add Firebase and Firestore Keys
+1. **Firebase Configuration**  
+   - Go to Firebase Console > Project Settings > Service Accounts.  
+   - Generate a new private key and download the `serviceAccount.json` file.  
 
--after done 2 task above the file json that have downloaded store in private folder
-```
+2. **Google Cloud Platform**  
+   - Go to Google Cloud Console > IAM & Admin > Service Accounts.  
+   - Create a new service account for cloud admin.  
+   - Download the generated JSON key and save it in the private folder.
 
-## Endpoint Routes
+Ensure the following files are stored in the `private` folder:
+- `firebase-config.js`
+- `serviceAccount.json`
 
-There are 19 prediction classes:
+---
+
+## Prediction Classes
+
+The API supports classification for 19 food-related classes:
 
 - `apple`  
-- `avocado` 
+- `avocado`  
 - `banana`  
 - `broccoli`  
 - `carrot`  
 - `chicken`  
 - `corn`  
 - `dragon fruit`  
-- `egg` 
+- `egg`  
 - `grape`  
 - `green vegetables`  
 - `orange`  
@@ -64,44 +101,87 @@ There are 19 prediction classes:
 - `tempeh`  
 - `tofu`  
 - `tomato`  
-- `watermelon`
+- `watermelon`  
 
+---
+
+## Endpoint Routes
+
+### General Endpoints
 
 | Route                           | HTTP Method | Description                                  |
 |---------------------------------|-------------|----------------------------------------------|
-| /database                          | GET         | Get All Data                              |
-| /database               | DELETE         | Delete All Data                             |
-| /users                          | GET        | Get All User                                     |
-| /users                          | DELETE        | Delete All User                                     |
-| /users/{{idUser}}               | GET         | Get users by id                                 |
-| /users/{{idUser}}               | PUT         | Update users by id                                |
-| /users/{{idUser}}               | DEL         | Delete users by id                                 |
-| /articles                        | GET         | Get all articles                              |
-| /articles/{{idarticles}}          | GET         | Get articles by Id                            |
-| /articles                        | POST        | Add articles                                  |
-| /articles/{{idarticles}}          | PUT         | Update articles  by id                              |
-| /articles/{{idarticles}}          | DEL         | Delete articles by id                             |
-| /login                   | POST         | Login                         |
-| /register   | POST         | Register                        |
-| /forgotPassword                   | POST        | Reset Password                             |
-| /makanan                  | GET        | Get All Food                          |
-| /makanan                  | POST        | Add Food                          |
-| /makanan/{{kategori}}/{{idmakanan}}               | GET        | Get Spesifict Food          |
-|  /makanan/{{kategori}}/{{idmakanan}}               | PUT        | Update Spesifict Food             |
-|  /makanan/{{kategori}}              | GET        | Get Food by Kategori          |
-|  /makanan/{{kategori}}              | DELETE        | DELETE Food by Kategori          |
-|  /predict_food              | POST        | Predict Food in ML Server         |
-|  /predict             | POST        | Predict Food         |
-|  /predicthisto             | POST        | Predict Food with 'user_id' payload    |
-|  /history/{{user_id}}            | GET        | Get history predict by 'user_id' payload    |
-|  /history/{{history_id}}           | DELETE        | Delete history predict by id   |
+| `/database`                     | GET         | Get all data                                 |
+| `/database`                     | DELETE      | Delete all data                              |
 
+### User Management
 
+| Route                           | HTTP Method | Description                                  |
+|---------------------------------|-------------|----------------------------------------------|
+| `/users`                        | GET         | Get all users                                |
+| `/users`                        | DELETE      | Delete all users                             |
+| `/users/{{idUser}}`             | GET         | Get user by ID                               |
+| `/users/{{idUser}}`             | PUT         | Update user by ID                            |
+| `/users/{{idUser}}`             | DELETE      | Delete user by ID                            |
 
+### Article Management
 
+| Route                           | HTTP Method | Description                                  |
+|---------------------------------|-------------|----------------------------------------------|
+| `/articles`                     | GET         | Get all articles                             |
+| `/articles/{{idarticles}}`      | GET         | Get article by ID                            |
+| `/articles`                     | POST        | Add an article                               |
+| `/articles/{{idarticles}}`      | PUT         | Update article by ID                         |
+| `/articles/{{idarticles}}`      | DELETE      | Delete article by ID                         |
 
-## Documentation for this API
-- Go to here for the workspace=> [https://documenter.getpostman.com/view/28165109/2sAYBaAVFe#152b4c90-4c0b-4a67-8752-3cc95b0b02e0](https://documenter.getpostman.com/view/28165109/2sAYBaAVFe#152b4c90-4c0b-4a67-8752-3cc95b0b02e0)
+### Other
 
-To see all documentation for this API 
-- Go to here for all documentation=> https://documenter.getpostman.com/view/28165109/2sAYBaAVFe#152b4c90-4c0b-4a67-8752-3cc95b0b02e0
+| Route                           | HTTP Method | Description                                  |
+|---------------------------------|-------------|----------------------------------------------|
+| `/login`                        | POST        | User login                                   |
+| `/register`                     | POST        | User registration                            |
+| `/forgotPassword`               | POST        | Reset password                               |
+
+### Food Prediction and History
+
+| Route                           | HTTP Method | Description                                  |
+|---------------------------------|-------------|----------------------------------------------|
+| `/predict_food`                 | POST        | Predict food using the ML server             |
+| `/predict`                      | POST        | Predict food                                 |
+| `/predicthisto`                 | POST        | Predict food with user history               |
+| `/history/{{user_id}}`          | GET         | Get prediction history for a user            |
+| `/history/{{history_id}}`       | DELETE      | Delete prediction history by ID              |
+
+### Food Management
+
+| Route                           | HTTP Method | Description                                  |
+|---------------------------------|-------------|----------------------------------------------|
+| `/makanan`                      | GET         | Get all food                                 |
+| `/makanan`                      | POST        | Add food                                     |
+| `/makanan/{{kategori}}/{{idmakanan}}` | GET   | Get specific food                            |
+| `/makanan/{{kategori}}/{{idmakanan}}` | PUT   | Update specific food                         |
+| `/makanan/{{kategori}}`         | GET         | Get food by category                         |
+| `/makanan/{{kategori}}`         | DELETE      | Delete food by category                      |
+
+---
+
+## API Documentation
+
+- **Postman Workspace**:  
+  [API Workspace Documentation](https://documenter.getpostman.com/view/28165109/2sAYBaAVFe#152b4c90-4c0b-4a67-8752-3cc95b0b02e0)  
+
+- **Complete Documentation**:  
+  [Full API Documentation](https://documenter.getpostman.com/view/28165109/2sAYBaAVFe#152b4c90-4c0b-4a67-8752-3cc95b0b02e0)  
+
+---
+
+## Contributing
+We welcome contributions to improve this API. To contribute:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Submit a pull request describing your changes.
+
+---
+
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
