@@ -6,7 +6,7 @@
 - [Setup Project](#setup-project)
 - [Environment Configuration](#environment-configuration)
 - [Prediction Classes](#prediction-classes)
-- [Deploying to Cloud Run](#deploying-to-cloud-runs)
+- [Deploying to Cloud Run](#deploying-to-cloud-run)
 - [Endpoint Routes](#endpoint-routes)
 - [API Documentation](#api-documentation)
 - [Contributing](#contributing)
@@ -94,7 +94,8 @@ This setup will securely manage the service account keys for both Google Cloud a
   Before deploying your app to Google Cloud Run, ensure that you meet the following prerequisites:
   - Create a Google Cloud Platform (GCP) account and manage projects.
   - Install and configure the Google Cloud SDK on your local machine.
-  Please note that "prerequisites" is a plural noun, so it is more appropriate to use "meet the following prerequisites" instead of "meet the following prerequisite" in this context.
+    
+  >  Please note that "prerequisites" is a plural noun, so it is more appropriate to use "meet the following prerequisites" instead of "meet the following prerequisite" in this context.
 
 - ### Steps
   - Prepare the application
@@ -116,6 +117,7 @@ This setup will securely manage the service account keys for both Google Cloud a
   - Accessing the application
     After the deployment process is complete, you will receive a URL that provides access to the deployed application. Utilize this URL to access the app through a web browser or by employing an API testing tool such as cURL or Postman.
 
+---
 
 ## Prediction Classes
 
