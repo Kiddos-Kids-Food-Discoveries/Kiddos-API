@@ -59,23 +59,33 @@ Create a `key.json` file in your project to store API keys and configurations:
 ```json
 {
     "api_key": "",
-    "storage_bucket": "kiddos-bangkit-2024"
+    "storage_bucket": "kiddos-bangkit-2024",
+    "ml_backend": "",
 }
 ```
 
 ### Add Firebase and Firestore Keys
-1. **Firebase Configuration**  
-   - Go to Firebase Console > Project Settings > Service Accounts.  
-   - Generate a new private key and download the `serviceAccount.json` file.  
+#### 1. Firebase Configuration
+- Go to **Firebase Console** and navigate to your project.
+- Open **Project Settings** > **Service Accounts**.
+- Generate a new private key by clicking **Generate New Private Key**.
+- Download the `serviceAccount.json` file.
+- Copy the content of this file into a new file named `firebase.json`. This file will contain the Firebase service account credentials and configuration.
+- Save the file as `firebase.json` in your `private` folder.
 
-2. **Google Cloud Platform**  
-   - Go to Google Cloud Console > IAM & Admin > Service Accounts.  
-   - Create a new service account for cloud admin.  
-   - Download the generated JSON key and save it in the private folder.
+#### 2. Google Cloud Platform (GCP) Configuration
+- Go to **Google Cloud Console** and navigate to **IAM & Admin** > **Service Accounts**.
+- Create a new service account for Cloud Admin by clicking on **Create Service Account**.
+- After creating the service account, go to the **Keys** section and add a new key in **JSON** format.
+- Download the key and rename it to `key.json`.
+- Store the `key.json` file in the `private` folder.
 
-Ensure the following files are stored in the `private` folder:
-- `firebase-config.js`
-- `serviceAccount.json`
+#### File Structure
+Ensure the following two files are stored in the `private` folder:
+1. **`key.json`**: Contains the Google Cloud service account credentials.
+2. **`firebase.json`**: Contains the Firebase service account credentials and configuration.
+
+This setup will securely manage the service account keys for both Google Cloud and Firebase.
 
 ---
 
