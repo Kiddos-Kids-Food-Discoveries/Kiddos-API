@@ -123,25 +123,10 @@ This setup will securely manage the service account keys for both Google Cloud a
 
 The API supports classification for 19 food-related classes:
 
-- `apple`  
-- `avocado`  
-- `banana`  
-- `broccoli`  
-- `carrot`  
-- `chicken`  
-- `corn`  
-- `dragon fruit`  
-- `egg`  
-- `grape`  
-- `green vegetables`  
-- `orange`  
-- `porridge`  
-- `potato`  
-- `rice`  
-- `tempeh`  
-- `tofu`  
-- `tomato`  
-- `watermelon`  
+`apple`, `avocado`, `banana`, `broccoli`, `carrot`, `chicken`, `corn`, `dragon fruit`, `egg`, `grape`, `green vegetables`, `orange`, `porridge`,     `potato`, `rice`, `tempeh`, `tofu`, `tomato`, `watermelon`
+
+- <img width="333" alt="Screenshot 2024-12-11 at 15 01 50" src="https://github.com/user-attachments/assets/2f9c648a-798d-400d-ab38-1caf22c148b0">
+
 
 ---
 
@@ -208,10 +193,10 @@ The API supports classification for 19 food-related classes:
 ## API Documentation
 
 - **Postman Workspace**:  
-  [API Workspace Documentation](https://documenter.getpostman.com/view/28165109/2sAYBaAVFe#152b4c90-4c0b-4a67-8752-3cc95b0b02e0)  
+  [API Workspace Documentation](https://documenter.getpostman.com/view/30672220/2sAYHwKkSE)  
 
 - **Complete Documentation**:  
-  [Full API Documentation](https://documenter.getpostman.com/view/28165109/2sAYBaAVFe#152b4c90-4c0b-4a67-8752-3cc95b0b02e0)  
+  [Full API Documentation](https://documenter.getpostman.com/view/30672220/2sAYHwKkSE)  
 
 ---
 
