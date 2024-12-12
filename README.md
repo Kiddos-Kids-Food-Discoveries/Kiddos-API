@@ -2,7 +2,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Cloud Infrastructure](#cloud-infrastructure)
+- [Cloud Architecture](#cloud-architecture)
 - [Setup Project](#setup-project)
 - [Environment Configuration](#environment-configuration)
 - [Prediction Classes](#prediction-classes)
@@ -19,8 +19,8 @@ The **Kiddos API** is designed to classify food items using a Machine Learning m
 
 ---
 
-## Cloud Infrastructure
-![Cloud Infrastructure](https://i.postimg.cc/YqfkwTkV/Cloud-Infrastructure-Kiddos-drawio.png)
+## Cloud Architecture
+![Cloud Infrastructure](https://i.postimg.cc/Bn8fHsMk/Cloud-Infrastructure-Kiddos-drawio-1.png)
 
 ---
 
